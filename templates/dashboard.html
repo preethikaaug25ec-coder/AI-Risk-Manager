@@ -1,0 +1,286 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Risk Dashboard | RiskGuard AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🛡️ <span>RiskGuard AI</span>
+    </div>
+
+    <div class="nav-status">
+
+        <span class="status-dot"></span>
+
+        Risk Engine Online
+
+    </div>
+
+</nav>
+
+
+<main class="dashboard-container">
+
+    <div class="dashboard-heading">
+
+        <div>
+
+            <div class="badge">
+                🛡️ Security Operations
+            </div>
+
+            <h1>Risk Dashboard</h1>
+
+            <p>
+                Monitor and review analyzed transactions
+            </p>
+
+        </div>
+
+
+        <a href="/" class="back-button">
+            + Analyze Transaction
+        </a>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💳
+            </div>
+
+            <p>Total Transactions</p>
+
+            <h2>{{ total }}</h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon high-icon">
+                🚨
+            </div>
+
+            <p>High Risk</p>
+
+            <h2>{{ high }}</h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon medium-icon">
+                ⚠️
+            </div>
+
+            <p>Medium Risk</p>
+
+            <h2>{{ medium }}</h2>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon low-icon">
+                ✓
+            </div>
+
+            <p>Low Risk</p>
+
+            <h2>{{ low }}</h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- Transactions -->
+
+    <div class="dashboard-card">
+
+        <div class="dashboard-card-header">
+
+            <div>
+
+                <h2>Recent Transactions</h2>
+
+                <p>
+                    Transactions analyzed by RiskGuard AI
+                </p>
+
+            </div>
+
+            <span class="live-label">
+                ● LIVE
+            </span>
+
+        </div>
+
+
+        {% if transactions %}
+
+        <div class="transaction-table">
+
+            <div class="table-header">
+
+                <span>Customer</span>
+                <span>Amount</span>
+                <span>Risk Score</span>
+                <span>Risk Level</span>
+                <span>Action</span>
+
+            </div>
+
+
+            {% for transaction in transactions %}
+
+            <div class="table-row">
+
+                <strong>
+                    {{ transaction["customer"] }}
+                </strong>
+
+                <span>
+                    ₹{{ "{:,.2f}".format(transaction["amount"]) }}
+                </span>
+
+                <span>
+                    {{ transaction["risk_score"] }}/100
+                </span>
+
+
+                {% if transaction["risk_level"] == "HIGH" %}
+
+                <span class="table-risk high">
+                    🔴 HIGH
+                </span>
+
+                {% elif transaction["risk_level"] == "MEDIUM" %}
+
+                <span class="table-risk medium">
+                    🟡 MEDIUM
+                </span>
+
+                {% else %}
+
+                <span class="table-risk low">
+                    🟢 LOW
+                </span>
+
+                {% endif %}
+
+
+                <span class="action-text">
+                    {{ transaction["action"] }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>No transactions yet</h3>
+
+            <p>
+                Analyze a transaction to see it appear here.
+            </p>
+
+            <a href="/">
+                Analyze First Transaction →
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- System Information -->
+
+    <div class="dashboard-info">
+
+        <div>
+
+            <span>🤖</span>
+
+            <div>
+
+                <strong>AI Risk Engine</strong>
+
+                <p>
+                    Monitoring transaction behavior
+                    and identifying unusual patterns.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <span>🔒</span>
+
+            <div>
+
+                <strong>Human-in-the-Loop</strong>
+
+                <p>
+                    Risk scores support human review
+                    rather than replacing final decisions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 RiskGuard AI · Pre-Transaction Risk Management
+
+</footer>
+
+</body>
+
+</html>
+```

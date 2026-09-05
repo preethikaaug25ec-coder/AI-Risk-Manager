@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Risk Analysis | RiskGuard AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ <span>RiskGuard AI</span>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            Risk Engine Online
+        </div>
+
+    </nav>
+
+
+    <main class="result-container">
+
+        <!-- Page Heading -->
+        <div class="result-heading">
+
+            <div>
+                <div class="badge">
+                    🔍 Transaction Analysis Complete
+                </div>
+
+                <h1>Risk Assessment</h1>
+
+                <p>
+                    AI-powered pre-transaction security analysis
+                </p>
+            </div>
+
+            <a href="/" class="back-button">
+                ← New Analysis
+            </a>
+
+        </div>
+
+
+        <!-- Main Result Grid -->
+        <div class="result-grid">
+
+
+            <!-- Risk Score Card -->
+            <div class="risk-card">
+
+                <p class="small-title">
+                    OVERALL RISK SCORE
+                </p>
+
+                <div class="score-circle">
+
+                    <div class="score-number">
+                        {{ score }}
+                    </div>
+
+                    <div class="score-total">
+                        / 100
+                    </div>
+
+                </div>
+
+
+                {% if level == "LOW" %}
+
+                    <div class="risk-badge low">
+                        ● LOW RISK
+                    </div>
+
+                    <p class="risk-description">
+                        This transaction shows no major
+                        unusual risk indicators.
+                    </p>
+
+                {% elif level == "MEDIUM" %}
+
+                    <div class="risk-badge medium">
+                        ● MEDIUM RISK
+                    </div>
+
+                    <p class="risk-description">
+                        Some unusual indicators were detected.
+                        Additional verification is recommended.
+                    </p>
+
+                {% else %}
+
+                    <div class="risk-badge high">
+                        ● HIGH RISK
+                    </div>
+
+                    <p class="risk-description">
+                        Multiple risk indicators were detected.
+                        Manual review is recommended before processing.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Transaction Details -->
+            <div class="details-card">
+
+                <div class="section-title">
+
+                    <span>💳</span>
+
+                    <div>
+                        <h2>Transaction Details</h2>
+                        <p>Information analyzed by the risk engine</p>
+                    </div>
+
+                </div>
+
+
+                <div class="details-list">
+
+                    <div class="detail-item">
+
+                        <span>Customer</span>
+
+                        <strong>
+                            {{ customer }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Transaction Amount</span>
+
+                        <strong>
+                            ₹{{ "{:,.2f}".format(amount) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Risk Score</span>
+
+                        <strong>
+                            {{ score }}/100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Risk Level</span>
+
+                        <strong>
+                            {{ level }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Risk Factors -->
+        <div class="factors-card">
+
+            <div class="section-title">
+
+                <span>⚠️</span>
+
+                <div>
+                    <h2>Detected Risk Factors</h2>
+
+                    <p>
+                        Factors contributing to the risk assessment
+                    </p>
+                </div>
+
+            </div>
+
+
+            {% if reasons %}
+
+                <div class="risk-factors">
+
+                    {% for reason in reasons %}
+
+                        <div class="factor">
+
+                            <div class="factor-icon">
+                                !
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Risk Indicator
+                                </strong>
+
+                                <p>
+                                    {{ reason }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="safe-message">
+
+                    <div class="safe-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>No major risk factors detected</strong>
+
+                        <p>
+                            The transaction appears consistent
+                            with the available customer behavior data.
+                        </p>
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Recommended Action -->
+        <div class="action-card">
+
+            <div class="action-icon">
+                🤖
+            </div>
+
+            <div class="action-content">
+
+                <p class="small-title">
+                    RECOMMENDED ACTION
+                </p>
+
+                <h2>
+                    {{ action }}
+                </h2>
+
+                <p>
+                    This recommendation is generated from the
+                    transaction risk assessment and should support
+                    human review rather than replace it.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+
+            🛡️ <strong>RiskGuard AI</strong> is an early-warning
+            risk screening prototype. A high-risk score does not
+            prove fraud. Final decisions should follow the
+            organization's verification and risk policies.
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 RiskGuard AI · Pre-Transaction Risk Management
+
+    </footer>
+
+</body>
+</html>

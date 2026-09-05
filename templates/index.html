@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Risk Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ <span>RiskGuard AI</span>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            Risk Engine Online
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <div class="badge">
+                    ✨ AI-Powered Transaction Security
+                </div>
+
+                <h1>
+                    Detect Risk
+                    <span>Before It Happens.</span>
+                </h1>
+
+                <p>
+                    Analyze transactions in real time and identify
+                    unusual behavior before the payment is processed.
+                </p>
+
+                <div class="security-points">
+
+                    <div>
+                        <span>✓</span>
+                        Real-time risk analysis
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Explainable risk factors
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Intelligent recommendations
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Transaction Card -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Transaction Analysis</h2>
+
+                        <p>
+                            Enter transaction details
+                        </p>
+                    </div>
+
+                    <div class="shield">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <form action="/analyze" method="POST">
+
+
+                    <!-- Customer -->
+                    <div class="input-group">
+
+                        <label>Customer Name</label>
+
+                        <div class="input-wrapper">
+                            <span>👤</span>
+
+                            <input type="text"
+                                   name="customer"
+                                   placeholder="Enter customer name"
+                                   required>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Transaction Amount -->
+                    <div class="input-group">
+
+                        <label>Transaction Amount</label>
+
+                        <div class="input-wrapper">
+
+                            <span>₹</span>
+
+                            <input type="number"
+                                   name="amount"
+                                   placeholder="e.g. 90,000"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Normal Amount -->
+                    <div class="input-group">
+
+                        <label>Customer's Normal Transaction</label>
+
+                        <div class="input-wrapper">
+
+                            <span>₹</span>
+
+                            <input type="number"
+                                   name="normal_amount"
+                                   placeholder="e.g. 500"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Transactions -->
+                    <div class="input-group">
+
+                        <label>Transactions Today</label>
+
+                        <div class="input-wrapper">
+
+                            <span>🔄</span>
+
+                            <input type="number"
+                                   name="transactions_today"
+                                   placeholder="e.g. 5"
+                                   min="0"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Select Row -->
+                    <div class="select-row">
+
+
+                        <div class="input-group">
+
+                            <label>New Recipient?</label>
+
+                            <select name="new_recipient">
+
+                                <option value="no">
+                                    No
+                                </option>
+
+                                <option value="yes">
+                                    Yes
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>Previous Suspicious Activity?</label>
+
+                            <select name="previous_suspicious">
+
+                                <option value="no">
+                                    No
+                                </option>
+
+                                <option value="yes">
+                                    Yes
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="input-group">
+
+                        <label>Unusual Location?</label>
+
+                        <select name="location_changed">
+
+                            <option value="no">
+                                No — Normal Location
+                            </option>
+
+                            <option value="yes">
+                                Yes — Unusual Location
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Button -->
+                    <button type="submit">
+
+                        <span>🔍</span>
+
+                        Analyze Transaction
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="privacy">
+
+                    🔒 Your transaction information is analyzed
+                    securely for risk assessment.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bottom Stats -->
+        <section class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <h3>Real-Time</h3>
+                    <p>Instant transaction analysis</p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <div>
+                    <h3>Risk Scoring</h3>
+                    <p>0–100 intelligent risk score</p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🚨
+                </div>
+
+                <div>
+                    <h3>Early Warning</h3>
+                    <p>Identify suspicious behavior</p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💡
+                </div>
+
+                <div>
+                    <h3>Explainable</h3>
+                    <p>Understand why risk is detected</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 RiskGuard AI · Pre-Transaction Risk Management
+        </p>
+
+    </footer>
+
+</body>
+</html>
